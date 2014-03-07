@@ -66,28 +66,28 @@ namespace  { // for Kaldi and Arma interaction
 
       void CheckKaldiOut(size_t n) {
         SCOPED_TRACE(format("CheckKaldiOut : Matrix %d", n));
-        EXPECT_EQ(lAnsKaldi[n].NumCols(), lOutKaldi[n].NumCols());
-        EXPECT_EQ(lAnsKaldi[n].NumRows(), lOutKaldi[n].NumRows());
+        ASSERT_EQ(lAnsKaldi[n].NumCols(), lOutKaldi[n].NumCols());
+        ASSERT_EQ(lAnsKaldi[n].NumRows(), lOutKaldi[n].NumRows());
         size_t nRow = lAnsArma[n].n_rows;
         size_t nCol = lAnsArma[n].n_cols;
         for (size_t x = 0; x < nRow; ++x) {
           for (size_t y = 0; y < nCol; ++y) {
             SCOPED_TRACE(format("At pos %d,%d", x, y));
-            EXPECT_FLOAT_EQ(lAnsKaldi[n](x,y), lOutKaldi[n](x,y));
+            ASSERT_FLOAT_EQ(lAnsKaldi[n](x,y), lOutKaldi[n](x,y));
           }
         }
       } // end test routine for Kaldi matrix
 
       void CheckArmaOut(size_t n) {
         SCOPED_TRACE(format("CheckArmaOut : Matrix %d", n));
-        EXPECT_EQ(lAnsArma[n].n_cols, lOutArma[n].n_cols);
-        EXPECT_EQ(lAnsArma[n].n_rows, lOutArma[n].n_rows);
+        ASSERT_EQ(lAnsArma[n].n_cols, lOutArma[n].n_cols);
+        ASSERT_EQ(lAnsArma[n].n_rows, lOutArma[n].n_rows);
         size_t nRow = lAnsArma[n].n_rows;
         size_t nCol = lAnsArma[n].n_cols;
         for (size_t x = 0; x < nRow; ++x) {
           for (size_t y = 0; y < nCol; ++y) {
             SCOPED_TRACE(format("At pos %d,%d", x, y));
-            EXPECT_FLOAT_EQ(lAnsArma[n](x,y), lOutArma[n](x,y));
+            ASSERT_FLOAT_EQ(lAnsArma[n](x,y), lOutArma[n](x,y));
           }
         }
       } // end test routine for Arma matrix
