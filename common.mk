@@ -41,9 +41,5 @@ COMMONLIBS := ${KALDI_ROOT}/src/matrix/kaldi-matrix.a \
 	@echo -e "\e[1;32m CXX $< -> $@ \e[m"
 	@${CXX} ${CXXFLAGS} -c -o $@ $<
 
-%: %.cc ${ADDITIONALDEP}
-	@echo -e "\e[1;32m CXX+LD $< -> $@ \e[m"
-	@${CXX} ${CXXFLAGS} ${LDFLAGS} -o $@ $< ${ADDLIBS} ${COMMONLIBS} ${LDLIBS}
-
 clean:
 	@rm -f *.stackdump *.tmp ${OBJS} ${TESTBINS} ${BINS}
