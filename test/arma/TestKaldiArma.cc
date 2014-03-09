@@ -247,6 +247,45 @@ namespace  { // for Kaldi and Arma interaction
     ASSERT_DEATH(kaldi::SequentialArmaDoubleReader readerFeat(fnTest), "only support double matrix");
   } // end TEST_F TestFixKaldiArma.TestDeathArma64
 
+
+  TEST(TestGetMatrixStats, TestGetStats32) {
+    const char* fnTest = "ark:TestKaldiArma.tmp";
+    {
+      kaldi::ArmaFloatWriter writerFeat(fnTest);
+      writerFeat.Write("t1", arma::randn<arma::Mat<double>>(42,13));
+      writerFeat.Write("t2", arma::randn<arma::Mat<double>>(16,13));
+      writerFeat.Write("t3", arma::randn<arma::Mat<double>>(171,13));
+      writerFeat.Write("t4", arma::randn<arma::Mat<double>>(94,13));
+    }
+
+    size_t ndim, nframe, maxframe, minframe;
+    kaldi::GetMatrixStats<kaldi::SequentialArmaFloatReader>
+      (fnTest, &ndim, &nframe, &maxframe, &minframe);
+    ASSERT_EQ(ndim, 13);
+    ASSERT_EQ(nframe, 323);
+    ASSERT_EQ(maxframe, 171);
+    ASSERT_EQ(minframe, 16);
+  } // end TEST_F TestFixKaldiArma.TestGetStats
+
+  TEST(TestGetMatrixStats, TestGetStats64) {
+    const char* fnTest = "ark:TestKaldiArma.tmp";
+    {
+      kaldi::ArmaDoubleWriter writerFeat(fnTest);
+      writerFeat.Write("t1", arma::randn<arma::Mat<double>>(42,13));
+      writerFeat.Write("t2", arma::randn<arma::Mat<double>>(16,13));
+      writerFeat.Write("t3", arma::randn<arma::Mat<double>>(171,13));
+      writerFeat.Write("t4", arma::randn<arma::Mat<double>>(94,13));
+    }
+
+    size_t ndim, nframe, maxframe, minframe;
+    kaldi::GetMatrixStats<kaldi::SequentialArmaDoubleReader>
+      (fnTest, &ndim, &nframe, &maxframe, &minframe);
+    ASSERT_EQ(ndim, 13);
+    ASSERT_EQ(nframe, 323);
+    ASSERT_EQ(maxframe, 171);
+    ASSERT_EQ(minframe, 16);
+  } // end TEST_F TestFixKaldiArma.TestGetStats
+
 } // namespace 
 
 int main(int argc, char **argv) {

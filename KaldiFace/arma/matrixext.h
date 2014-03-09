@@ -56,6 +56,11 @@ namespace kaldi {
       T *obj;
   }; // end definition of ArmaHolder
 
+  template<class TableReaderType>
+  void GetMatrixStats(const char* rspecifier,
+      size_t* ndim = nullptr, size_t* nframe = nullptr,
+      size_t* maxframe = nullptr, size_t* minframe = nullptr);
+
   typedef TableWriter<ArmaHolder<arma::mat, 32> > ArmaFloatWriter;
   typedef SequentialTableReader<ArmaHolder<arma::mat, 32> > SequentialArmaFloatReader;
   typedef RandomAccessTableReader<ArmaHolder<arma::mat, 32> >  RandomAccessArmaFloatReader;
