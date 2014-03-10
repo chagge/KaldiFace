@@ -58,6 +58,7 @@ namespace kaldi {
 
   template<class TableReaderType>
   void GetMatrixStats(const char* rspecifier,
+      size_t* nfile = nullptr,
       size_t* ndim = nullptr, size_t* nframe = nullptr,
       size_t* maxframe = nullptr, size_t* minframe = nullptr);
 

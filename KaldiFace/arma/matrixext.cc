@@ -181,11 +181,13 @@ namespace kaldi {
 
   template<class TableReaderType>
   void GetMatrixStats(const char* rspecifier,
+      size_t* nfile = nullptr,
       size_t* ndim = nullptr, size_t* nframe = nullptr,
       size_t* maxframe = nullptr, size_t* minframe = nullptr) {
     TableReaderType readerFeat(rspecifier);
 
     auto& mFirst = readerFeat.Value();
+    size_t _nfile = 0;
     size_t _ndim = mFirst.n_cols;
     size_t _maxframe = mFirst.n_rows;
     size_t _minframe = mFirst.n_rows;
@@ -194,19 +196,22 @@ namespace kaldi {
       auto& mFeat = readerFeat.Value();
       size_t nframeThis = mFeat.n_rows;
       _nframe += nframeThis;
+      _nfile += 1;
       if (_maxframe < nframeThis) _maxframe = nframeThis;
       if (_minframe > nframeThis) _minframe = nframeThis;
     }
 
+    if (nfile != nullptr) *nfile = _nfile;
     if (ndim != nullptr) *ndim = _ndim;
     if (nframe != nullptr) *nframe = _nframe;
     if (maxframe != nullptr) *maxframe = _maxframe;
     if (minframe != nullptr) *minframe = _minframe;
   }
 
+  // Explicit Instantiation
   template void GetMatrixStats<SequentialArmaFloatReader>(const char*,
-      size_t*, size_t*, size_t*, size_t*);
+      size_t*, size_t*, size_t*, size_t*, size_t*);
   template void GetMatrixStats<SequentialArmaDoubleReader>(const char*,
-      size_t*, size_t*, size_t*, size_t*);
+      size_t*, size_t*, size_t*, size_t*, size_t*);
 
 }

@@ -258,9 +258,10 @@ namespace  { // for Kaldi and Arma interaction
       writerFeat.Write("t4", arma::randn<arma::Mat<double>>(94,13));
     }
 
-    size_t ndim, nframe, maxframe, minframe;
+    size_t nfile, ndim, nframe, maxframe, minframe;
     kaldi::GetMatrixStats<kaldi::SequentialArmaFloatReader>
-      (fnTest, &ndim, &nframe, &maxframe, &minframe);
+      (fnTest, &nfile, &ndim, &nframe, &maxframe, &minframe);
+    ASSERT_EQ(nfile, 4);
     ASSERT_EQ(ndim, 13);
     ASSERT_EQ(nframe, 323);
     ASSERT_EQ(maxframe, 171);
@@ -277,9 +278,10 @@ namespace  { // for Kaldi and Arma interaction
       writerFeat.Write("t4", arma::randn<arma::Mat<double>>(94,13));
     }
 
-    size_t ndim, nframe, maxframe, minframe;
+    size_t nfile, ndim, nframe, maxframe, minframe;
     kaldi::GetMatrixStats<kaldi::SequentialArmaDoubleReader>
-      (fnTest, &ndim, &nframe, &maxframe, &minframe);
+      (fnTest, &nfile, &ndim, &nframe, &maxframe, &minframe);
+    ASSERT_EQ(nfile, 4);
     ASSERT_EQ(ndim, 13);
     ASSERT_EQ(nframe, 323);
     ASSERT_EQ(maxframe, 171);
