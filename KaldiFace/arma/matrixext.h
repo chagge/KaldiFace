@@ -73,4 +73,6 @@ namespace kaldi {
 
 }
 
+#include "matrixext_inl.h"
+
 #endif /* end of include guard */

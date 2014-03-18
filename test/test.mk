@@ -28,10 +28,9 @@ RunTest%: Test%
 
 include $(dir $(realpath $(lastword $(MAKEFILE_LIST))))/../common.mk
 
-# This is just for convenience
-library:
-	@+${MAKE} -C ${KALDIFACE_ROOT}
-
 Test%: Test%.cc ${ADDITIONALDEP}
 	@echo -e "\e[1;32m CXX+LD $< -> $@ \e[m"
-	@${CXX} ${CXXFLAGS} ${LDFLAGS} -O0 -g1 -I${KALDIFACE_ROOT} -o $@ $< ${KALDIFACE_ROOT}/libKaldiFace.a ${ADDLIBS} ${COMMONLIBS} ${LDLIBS} -lgtest
+	@${CXX} ${CXXFLAGS} ${LDFLAGS} -O0 -g1 -I${KALDIFACE_ROOT} -o $@ $< ${ADDLIBS} ${COMMONLIBS} ${LDLIBS} -lgtest
+
+clean:
+	@rm -f *.stackdump *.o *.tmp ${TESTBINS}

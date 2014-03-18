@@ -17,21 +17,14 @@
 #***************************************************************************
 
 MODULES = arma
-ALLSOURCES = $(shell find KaldiFace/ -type f -name '*.cc') $(shell find KaldiFace/ -type f -name '*.h')
-ALLOBJSREC = $(patsubst %.cc, %.o, $(shell find KaldiFace/ -type f -name '*.cc'))
 
-.PHONY: all test clean
+.PHONY: test clean
 
-all: libKaldiFace.a
-
-libKaldiFace.a: ${ALLSOURCES}
-	@+$(foreach m,${MODULES}, ${MAKE} -C KaldiFace/${m} &&) true
-	ar rcs libKaldiFace.a ${ALLOBJSREC}
+all:
+	@true
 
 clean:
-	@+$(foreach m,${MODULES}, ${MAKE} -C KaldiFace/${m} clean &&) true
 	@+$(foreach m,${MODULES}, ${MAKE} -C test/${m} clean &&) true
-	rm -f *.stackdump libKaldiFace.a
 
-test: libKaldiFace.a
+test:
 	@+$(foreach m,${MODULES}, ${MAKE} -C test/${m} test &&) true

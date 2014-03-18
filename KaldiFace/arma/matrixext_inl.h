@@ -27,8 +27,6 @@
 // The source code for Kaldi is available from 
 //   http://kaldi.sourceforge.net/.
 
-#include "matrixext.h"
-
 namespace kaldi {
 
   template<>
@@ -207,11 +205,4 @@ namespace kaldi {
     if (maxframe != nullptr) *maxframe = _maxframe;
     if (minframe != nullptr) *minframe = _minframe;
   }
-
-  // Explicit Instantiation
-  template void GetMatrixStats<SequentialArmaFloatReader>(const char*,
-      size_t*, size_t*, size_t*, size_t*, size_t*);
-  template void GetMatrixStats<SequentialArmaDoubleReader>(const char*,
-      size_t*, size_t*, size_t*, size_t*, size_t*);
-
 }

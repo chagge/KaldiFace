@@ -1,7 +1,8 @@
 KaldiFace
 =====
 
-Some interface between Kaldi's table reader/writer and other libraries' data structures
+Some interface between Kaldi's table reader/writer and other libraries' data structures.
+A header-only mini C++ library
 
 Dependencies
 -----

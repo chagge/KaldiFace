@@ -36,10 +36,3 @@ COMMONLIBS := ${KALDI_ROOT}/src/matrix/kaldi-matrix.a \
 .PRECIOUS: Test%
 
 .PHONY: all test clean
-
-%.o: %.cc ${ADDITIONALDEP}
-	@echo -e "\e[1;32m CXX $< -> $@ \e[m"
-	@${CXX} ${CXXFLAGS} -c -o $@ $<
-
-clean:
-	@rm -f *.stackdump *.tmp ${OBJS} ${TESTBINS} ${BINS}
