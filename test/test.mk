@@ -29,7 +29,7 @@ RunTest%: Test%
 include $(dir $(realpath $(lastword $(MAKEFILE_LIST))))/../common.mk
 
 Test%: Test%.cc ${ADDITIONALDEP}
-	@echo -e "\e[1;32m CXX+LD $< -> $@ \e[m"
+	@printf "\e[1;32m CXX+LD $< -> $@ \e[m\n"
 	@${CXX} ${CXXFLAGS} ${LDFLAGS} -O0 -g1 -I${KALDIFACE_ROOT} -o $@ $< ${ADDLIBS} ${COMMONLIBS} ${LDLIBS} -lgtest
 
 clean:

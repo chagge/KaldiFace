@@ -3,6 +3,7 @@
 *.lo
 *.o
 *.exe
+*.dSYM
 
 # Compiled Dynamic libraries
 *.so
