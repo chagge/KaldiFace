@@ -16,21 +16,24 @@
 # limitations under the License.
 #***************************************************************************
 
-RUNTESTBINS := $(patsubst %, Run%, ${TESTBINS})
+TESTBINS := $(patsubst %, Test%.exe, ${TESTUNITS})
+RUNTESTBINS := $(patsubst %, RunTest%, ${TESTUNITS})
 
 all: ${TESTBINS}
 	@true
 
 test: ${RUNTESTBINS}
+	@true
 
-RunTest%: Test%
+RunTest%: Test%.exe
 	@./$< --gtest_color=yes
 
 include $(dir $(realpath $(lastword $(MAKEFILE_LIST))))/../common.mk
 
-Test%: Test%.cc ${ADDITIONALDEP}
-	@echo -e "\e[1;32m CXX+LD $< -> $@ \e[m"
+Test%.exe: Test%.cc ${ADDITIONALDEP}
+	@printf "\e[1;32m CXX+LD $< -> $@ \e[m\n"
 	@${CXX} ${CXXFLAGS} ${LDFLAGS} -O0 -g1 -I${KALDIFACE_ROOT} -o $@ $< ${ADDLIBS} ${COMMONLIBS} ${LDLIBS} -lgtest
 
 clean:
 	@rm -f *.stackdump *.o *.tmp ${TESTBINS}
+	@rm -rf *.dSYM

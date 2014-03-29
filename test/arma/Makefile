@@ -1,3 +1,3 @@
-TESTBINS = TestKaldiArma
+TESTUNITS = KaldiArma
 
 include ../test.mk
