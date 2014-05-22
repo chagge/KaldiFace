@@ -15,6 +15,8 @@ These are optional and for unit tests only:
 * Tinyformat : https://github.com/c42f/tinyformat
 * Google Test : http://code.google.com/p/googletest/
 
+An compile script to compile Kaldi with OpenBLAS under cygwin is attached in doc/compile\_cygwin.sh. This will not work out of box and is provided only for reference.
+
 Install
 -----
 TBD.
