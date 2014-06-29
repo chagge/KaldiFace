@@ -4,6 +4,9 @@ KaldiFace
 Some interface between Kaldi's table reader/writer and other libraries' data structures.
 A stable header-only mini C++ library.
 
+Features:
+ * Armadillo interface to speech feature processing
+
 Dependencies
 -----
 
