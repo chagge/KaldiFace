@@ -2,7 +2,7 @@ KaldiFace
 =====
 
 Some interface between Kaldi's table reader/writer and other libraries' data structures.
-A header-only mini C++ library
+A stable header-only mini C++ library.
 
 Dependencies
 -----
@@ -20,6 +20,10 @@ An compile script to compile Kaldi with OpenBLAS under cygwin is attached in doc
 Install
 -----
 TBD.
+
+Usage
+-----
+See the unit testings (`test/arma/*.cc`) for usage examples.
 
 Caveats and Known Bugs
 -----
