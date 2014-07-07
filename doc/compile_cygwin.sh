@@ -27,7 +27,7 @@ rm -rf OpenBLAS
 
 svn co http://svn.code.sf.net/p/kaldi/code/trunk kaldi-trunk
 cd kaldi-trunk/tools
-CXXFLAGS+=" -O3" LDFLAGS+=" -s" make irstlm openfst sph2pipe || exit 1
+CXXFLAGS+=" -O3" LDFLAGS+=" -s" make irstlm_tgt openfst sph2pipe || exit 1
 cd ../src
 make -j1 clean
 install -v $SCRIPT_PATH/kaldi.mk . && \
